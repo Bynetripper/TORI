@@ -36,8 +36,7 @@ https://mullvad.net/en/why-privacy-matters
 
 ## Requirements
 
-Disclaimer
-TORI is a privacy routing tool, not a guarantee of complete anonymity. Browser fingerprinting, cookies, JavaScript, authentication sessions, DNS misconfiguration, and user error can still expose your identity. Transparent routing can break connectivity if misconfigured. You can be fingerprinted by deauth, MITM, or packet pings. Using a VPN like Mullvad will allow you to obfuscate and multi hop. Always verify your IP and DNS leak status before relying on any anonymity tool. Use responsibly and in accordance with your local laws. 
+
 
 ```bash
 python3          # Python 3.x runtime
