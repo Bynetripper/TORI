@@ -1,4 +1,5 @@
-<img width="690" height="952" alt="image" src="https://github.com/user-attachments/assets/715c928f-e802-467a-b78c-ac9462da2c70" />
+<img width="690" height="945" alt="4" src="https://github.com/user-attachments/assets/5dd31983-45e9-46a5-940b-aabe4fed6f75" />
+
 
 1. **VPN Detection** – Scans for active VPN interfaces (`tun0`, `wg0`, `ppp0`, etc.) and known VPN processes to confirm whether a VPN tunnel is already established before Tor is layered on top.
 
