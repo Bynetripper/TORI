@@ -1,50 +1,45 @@
-<img width="690" height="945" alt="4" src="https://github.com/user-attachments/assets/5dd31983-45e9-46a5-940b-aabe4fed6f75" />
+<img width="549" height="503" alt="image" src="https://github.com/user-attachments/assets/9803b6b6-5c42-4ad6-8f01-c433712d869b" />
+<img width="398" height="544" alt="image" src="https://github.com/user-attachments/assets/dfef5831-619f-40f7-94c9-4f1a53555e2d" />
 
 
-1. **VPN Detection** – Scans for active VPN interfaces (`tun0`, `wg0`, `ppp0`, etc.) and known VPN processes to confirm whether a VPN tunnel is already established before Tor is layered on top.
+# ⛩ TORII - Anonymity Routing & Proxy Manager
 
-2. **Tor Activation** – Starts the local Tor service and ensures the SOCKS5 proxy is listening on `127.0.0.1:9050`.
+**TORII** is a minimalist, dark-themed Python GUI tool designed to manage Tor routing and proxy configurations. Built with simplicity and security in mind, it provides a clean interface to toggle between SOCKS5 and Transparent proxy modes, manage exit node exclusions, and monitor your network status.
 
-3. **Routing Mode Selection** – Applies one of two routing strategies:
-   - **SOCKS5 Proxy Mode** – Configures the system proxy (and compatible browsers) to route traffic through Tor's local SOCKS5 port. Ideal for browser-only anonymity via FoxyProxy or TORI's built-in browser launcher.
-   - **Transparent Tor Mode** – Rewrites `iptables` rules to redirect all TCP and DNS traffic through Tor's `TransPort` and `DNSPort`, enforcing system-wide Tor routing without per-app configuration.
-
-4. **IP Verification** – Queries external IP intelligence services to display your current public IP, geolocation, and ISP/organization, confirming whether traffic is exiting through a Tor relay or your real address.
-
-5. **Browser Launching** – Spawns isolated browser profiles (Firefox, Chrome/Chromium, or Tor Browser) pre-configured to route through Tor's SOCKS5 proxy with remote DNS resolution enabled.
-
-6. **Panic / Reset** – Instantly flushes all Tor firewall rules, kills the Tor process, removes proxy settings, restarts NetworkManager, and restores default networking.
+Optimized for **Debian** and **Raspberry Pi OS**.
 
 ---
 
-## Features
+## ✨ Features
 
-- **Minimal Dark / ASCII GUI** – Clean, distraction-free interface built with Tkinter. No web frameworks, no heavy dependencies, no bloat.
-- **Active VPN Detection** – Automatically identifies whether a VPN tunnel is live before layering Tor, helping enforce a VPN → Tor chain.
-- **Real-Time IP / Location / ISP Check** – Displays your public-facing IP address, approximate geolocation, and hosting organization so you can verify routing at a glance.
-- **Dual Tor Routing Modes**
-  - **SOCKS5 Proxy Mode** – Application-level routing through `127.0.0.1:9050`. Best for browser-only anonymity.
-  - **Transparent Tor Mode** – System-wide traffic redirection using `iptables`, Tor `TransPort`, and Tor `DNSPort`. No per-app proxy setup required.
-- **One-Click Browser Launcher** – Opens Firefox, Chrome/Chromium, or Tor Browser in isolated profiles pre-configured for Tor SOCKS5 with remote DNS.
-- **FoxyProxy-Compatible** – Works seamlessly with FoxyProxy Standard for granular, per-site proxy rules inside Firefox.
-- **Network Panic / Reset Button** – One click to flush Tor rules, stop Tor, clear proxy settings, and restore normal networking.
-- **Built-In About / Info Panel** – Expandable dropdown containing usage instructions, SOCKS5 + FoxyProxy setup guidance, and a privacy disclaimer.
-- **Multi-Level Privacy Support** – Designed to work on top of an active VPN, creating a `You → VPN → Tor → Destination` chain.
+- **Dual Routing Modes**: Seamlessly switch between **SOCKS5** (App-level) and **Transparent** (System-wide via iptables) proxy modes.
+- **Exit Node Control**: Built-in checkboxes to easily **Avoid USA** or **Avoid Europe** exit nodes by dynamically configuring `/etc/tor/torrc`.
+- **Minimalist UI**: Ultra-clean, centered dark-mode interface with glowing interactive buttons. No clutter, just the essentials.
+- **Tor Control Port Integration**: Instantly request new circuits and monitor active Tor circuits without restarting the daemon.
+- **VPN Detection**: Automatically detects active VPN interfaces (OpenVPN, WireGuard, etc.) to prevent routing conflicts.
+- **Panic Reset**: One-click network reset to flush iptables, kill Tor, and restore default DNS/network settings.
+- **Dependency Installer**: Built-in tool to automatically install required system packages (`tor`, `curl`, `iptables`, etc.).
 
 ---
-## Disclaimer
-TORI is a privacy routing tool, not a guarantee of complete anonymity. Browser fingerprinting, cookies, JavaScript, authentication sessions, DNS misconfiguration, and user error can still expose your identity. Transparent routing can break connectivity if misconfigured. You can be fingerprinted by deauth, MITM, or packet pings. Using a VPN like Mullvad will allow you to obfuscate and multi hop. Always verify your IP and DNS leak status before relying on any anonymity tool. Use responsibly and in accordance with your local laws.
-https://mullvad.net/en/why-privacy-matters
 
-## Requirements
+## 📋 Prerequisites
 
+Before running TORII, ensure you have the following installed on your system:
 
+- **Python 3.7+**
+- **python3-tk** (Tkinter)
+- **Tor** (`tor`)
+- **curl**
+- **iptables**
+
+---
+
+## 🚀 Installation & Setup
+
+### 1. Install System Dependencies
+If you are on a Debian-based system (Ubuntu, Raspberry Pi OS, Kali, etc.), you can install all required dependencies using the built-in installer in the Settings menu, or via the terminal:
 
 ```bash
-python3          # Python 3.x runtime
-python3-tk       # Tkinter GUI framework
-tor              # Tor daemon for SOCKS5 and transparent routing
-curl             # IP verification and HTTP checks
-
-
+sudo apt update
+sudo apt install -y tor curl iptables python3-tk network-manager
 
